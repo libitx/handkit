@@ -8,11 +8,19 @@ defmodule Handkit.MixProject do
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      # Docs
       name: "Handkit",
-      source_url: "https://github.com/libitx/PROJECT",
+      description: "Handkit is an Elixir client for the Handcash Connect API.",
+      source_url: "https://github.com/libitx/handkit",
       docs: [
         main: "Handkit"
+      ],
+      package: [
+        name: "handkit",
+        files: ~w(lib .formatter.exs mix.exs README.md LICENSE),
+        licenses: ["Apache-2.0"],
+        links: %{
+          "GitHub" => "https://github.com/libitx/handkit"
+        }
       ]
     ]
   end
