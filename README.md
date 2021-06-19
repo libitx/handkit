@@ -1,5 +1,7 @@
 # Handkit
 
+![Handkit](https://github.com/libitx/handkit/raw/master/media/poster.png)
+
 ![Hex.pm](https://img.shields.io/hexpm/v/handkit?color=informational)
 ![License](https://img.shields.io/github/license/libitx/handkit?color=informational)
 ![Build Status](https://img.shields.io/github/workflow/status/libitx/handkit/Elixir%20CI)

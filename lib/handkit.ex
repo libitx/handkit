@@ -1,5 +1,7 @@
 defmodule Handkit do
   @moduledoc """
+  ![Handkit](https://github.com/libitx/handkit/raw/master/media/poster.png)
+
   ![License](https://img.shields.io/github/license/libitx/handkit?color=informational)
 
   Handkit is an Elixir client for the [Handcash Connect API](https://handcash.dev).
