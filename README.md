@@ -32,7 +32,7 @@ in `mix.exs`.
 ```elixir
 def deps do
   [
-    {:handkit, "~> 0.1"}
+    {:handkit, "~> 0.2"}
   ]
 end
 ```

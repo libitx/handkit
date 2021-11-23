@@ -147,18 +147,16 @@ defmodule Handkit.Profile do
   """
   @spec get_encryption_keypair(Connect.t) :: {:ok, map} | {:error, any}
   def get_encryption_keypair(%Connect{client: client} = _client) do
-    key = Curvy.Key.generate()
-    query = %{"encryptionPublicKey" => Curvy.Key.to_pubkey(key) |> Base.encode16(case: :lower)}
+    key = BSV.KeyPair.new()
+    query = %{"encryptionPublicKey" => BSV.PubKey.to_binary(key.pubkey, encoding: :hex)}
 
     result = client
     |> Tesla.get(@endpoint <> "/encryptionKeypair", query: query)
     |> Connect.handle_result()
 
     with {:ok, %{"encrypted_public_key_hex" => enc_pubkey, "encrypted_private_key_hex" => enc_privkey}} <- result do
-      pubkey = enc_pubkey
-      |> BSV.Crypto.ECIES.decrypt(Curvy.Key.to_privkey(key), encoding: :hex)
-      privkey = enc_privkey
-      |> BSV.Crypto.ECIES.decrypt(Curvy.Key.to_privkey(key), encoding: :hex)
+      pubkey = BSV.Message.decrypt(enc_pubkey, key.privkey, encoding: :hex)
+      privkey = BSV.Message.decrypt(enc_privkey, key.privkey, encoding: :hex)
 
       {:ok, %{"public_key" => pubkey, "private_key" => privkey}}
     end
